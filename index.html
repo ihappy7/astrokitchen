@@ -5,81 +5,209 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AstroKitchen</title>
   <style>
+    :root {
+      --sage-bg: #f4f7f5;
+      --sage-green: #a9b6a2;
+      --sage-green-dark: #758c6e;
+      --sage-green-darker: #4e6352;
+      --button-bg: #8ca087;
+      --button-bg-hover: #4e6352;
+      --white: #fff;
+      --gray: #6b7280;
+    }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #e5ebdf;
-      color: #2d2d2d;
+      background: var(--sage-bg);
+      font-family: 'Segoe UI', Arial, sans-serif;
       margin: 0;
       padding: 0;
-    }
-    header {
       text-align: center;
-      padding: 2rem 1rem;
-      background-color: #cddac8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
+    .container {
+      margin-top: 50px;
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: 0 2px 12px rgba(100, 120, 100, 0.07);
+      padding: 40px 25px 32px 25px;
+      width: 90%;
+      max-width: 400px;
+      border: 2px solid var(--sage-green);
     }
-    section {
-      padding: 2rem 1rem;
-      max-width: 800px;
-      margin: auto;
+    h1 {
+      margin-top: 0;
+      color: var(--sage-green-darker);
+      font-size: 2em;
+      letter-spacing: 1px;
     }
-    .button {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background-color: #95b995;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 1.1rem;
-      margin: 1rem 0;
+    .welcome {
+      font-size: 1.15em;
+      color: var(--sage-green-dark);
+      margin-bottom: 32px;
+      font-weight: 500;
     }
-    iframe {
+    button {
+      margin: 18px 0 8px 0;
+      padding: 14px 32px;
+      background: var(--button-bg);
+      color: var(--white);
       border: none;
-      width: 100%;
-      height: 600px;
-      margin-top: 2rem;
+      border-radius: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(100, 120, 100, 0.08);
     }
-    .moon-widget {
-      margin-top: 2rem;
-      text-align: center;
+    button:hover {
+      background: var(--button-bg-hover);
+    }
+    .info-text {
+      font-size: 0.98em;
+      color: var(--gray);
+      margin-bottom: 24px;
+    }
+    #moon-result {
+      margin-top: 10px;
+      font-size: 1.13em;
+      color: var(--sage-green-darker);
+      font-weight: 500;
+    }
+    /* Chatbot popup styles */
+    #chatbot-popup {
+      display: none;
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      width: 340px;
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(76, 104, 96, 0.17);
+      padding: 28px 20px 20px 20px;
+      z-index: 1000;
+      text-align: left;
+      border: 2px solid var(--sage-green);
+    }
+    #chatbot-popup h2 {
+      margin: 0 0 12px 0;
+      font-size: 1.2em;
+      color: var(--sage-green-darker);
+    }
+    #chatbot-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--sage-green);
+      font-size: 1.3em;
+      cursor: pointer;
+    }
+    @media (max-width: 500px) {
+      .container, #chatbot-popup {
+        width: 98%;
+        left: 1%;
+        right: 1%;
+        min-width: unset;
+        max-width: unset;
+      }
+      #chatbot-popup {
+        bottom: 10px;
+        right: 10px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>AstroKitchen</h1>
+    <div class="welcome">
+      Welcome to AstroKitchen 🌿<br>
+      <span>Your personalized astrology-based meal planner</span>
+    </div>
 
-<header>
-  <h1>Welcome to AstroKitchen 🌿</h1>
-  <p>Your personalized astrology-based wellness and meal planner</p>
-</header>
+    <button id="moon-btn">Show Current Moon Phase</button>
+    <div class="info-text">
+      Tracking moon phases helps optimize timing for meals and wellness.
+    </div>
+    <div id="moon-result"></div>
 
-<section>
-  <h2>✨ How It Works</h2>
-  <p>Tell me your <strong>Sun, Moon, and Rising</strong> signs or share your birth chart. I’ll recommend foods aligned with your elemental energies:</p>
-  <ul>
-    <li>🔥 Fire (Aries, Leo, Sagittarius): Cooling foods like cucumber, berries, leafy greens.</li>
-    <li>🌱 Earth (Taurus, Virgo, Capricorn): Grounding meals like grains, root vegetables, and proteins.</li>
-    <li>🌬️ Air (Gemini, Libra, Aquarius): Brain foods — seeds, nuts, citrus, omega-3s.</li>
-    <li>💧 Water (Cancer, Scorpio, Pisces): Warm, comforting dishes like soups, broths, turmeric.</li>
-  </ul>
+    <button id="recipes-btn">AstroKitchen Recipes</button>
+  </div>
 
-  <a class="button" href="https://astro-seek.com/birth-chart-horoscope-online" target="_blank">🗺️ Create Your Free Birth Chart</a>
-  <br/>
-  <a class="button" href="#chatbot">💬 AstroKitchen Recipes</a>
-</section>
+  <!-- Chatbot Popup -->
+  <div id="chatbot-popup">
+    <button id="chatbot-close" title="Close">&times;</button>
+    <h2>Welcome to Your AstroKitchen Companion!</h2>
+    <div>
+      How can I help you today with astrology-inspired recipes, meal planning, or wellness tips?
+      <br><br>
+      <em>(Chatbot functionality coming soon!)</em>
+    </div>
+  </div>
 
-<section id="moon" class="moon-widget">
-  <h2>🌙 Current Moon Phase</h2>
-  <p><img src="https://www.moongiant.com/images/moonphases.png" alt="Moon Phase Calendar" style="width:100%;max-width:400px;"></p>
-  <p><em>Tracking moon phases helps optimize timing for meals and wellness.</em></p>
-</section>
+  <script>
+    // Moon phase calculation function
+    function getMoonInfo() {
+      var now = new Date();
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1; // 1-12
+      var day = now.getDate();
 
-<section id="chatbot">
-  <h2>💬 Chat with AstroKitchen</h2>
-  <iframe src="https://www.chatbase.co/chatbot-iframe/QjjuOdKedqSVVIHdAehUU" title="AstroKitchen Chatbot"></iframe>
-</section>
+      if (month < 3) {
+        year--;
+        month += 12;
+      }
+      ++month;
+      var c = 365.25 * year;
+      var e = 30.6 * month;
+      var jd = c + e + day - 694039.09; // jd is total days elapsed
+      jd /= 29.5305882; // divide by the moon cycle
+      var moonAge = jd - Math.floor(jd); // get fractional part of moon cycle
+      moonAge = Math.round(moonAge * 29.5305882);
 
+      // Moon phases
+      var phases = [
+        { name: "New Moon", start: 0, end: 1 },
+        { name: "Waxing Crescent", start: 2, end: 6 },
+        { name: "First Quarter", start: 7, end: 8 },
+        { name: "Waxing Gibbous", start: 9, end: 13 },
+        { name: "Full Moon", start: 14, end: 16 },
+        { name: "Waning Gibbous", start: 17, end: 21 },
+        { name: "Last Quarter", start: 22, end: 23 },
+        { name: "Waning Crescent", start: 24, end: 28 },
+        { name: "New Moon", start: 29, end: 29 }
+      ];
+
+      let phaseName = "Unknown";
+      for (let p of phases) {
+        if (moonAge >= p.start && moonAge <= p.end) {
+          phaseName = p.name;
+          break;
+        }
+      }
+      return { age: moonAge, phase: phaseName };
+    }
+
+    // Show current moon info
+    document.getElementById('moon-btn').addEventListener('click', function () {
+      var moon = getMoonInfo();
+      document.getElementById('moon-result').textContent =
+        "Current Moon Age: " + moon.age + " days\nPhase: " + moon.phase;
+    });
+
+    // Show chatbot popup
+    document.getElementById('recipes-btn').addEventListener('click', function () {
+      document.getElementById('chatbot-popup').style.display = 'block';
+    });
+
+    // Close chatbot popup
+    document.getElementById('chatbot-close').addEventListener('click', function () {
+      document.getElementById('chatbot-popup').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
