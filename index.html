@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AstroKitchen</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e5ebdf;
+      color: #2d2d2d;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #cddac8;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    section {
+      padding: 2rem 1rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    .button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: #95b995;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      margin: 1rem 0;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 600px;
+      margin-top: 2rem;
+    }
+    .moon-widget {
+      margin-top: 2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Welcome to AstroKitchen 🌿</h1>
+  <p>Your personalized astrology-based wellness and meal planner</p>
+</header>
+
+<section>
+  <h2>✨ How It Works</h2>
+  <p>Tell me your <strong>Sun, Moon, and Rising</strong> signs or share your birth chart. I’ll recommend foods aligned with your elemental energies:</p>
+  <ul>
+    <li>🔥 Fire (Aries, Leo, Sagittarius): Cooling foods like cucumber, berries, leafy greens.</li>
+    <li>🌱 Earth (Taurus, Virgo, Capricorn): Grounding meals like grains, root vegetables, and proteins.</li>
+    <li>🌬️ Air (Gemini, Libra, Aquarius): Brain foods — seeds, nuts, citrus, omega-3s.</li>
+    <li>💧 Water (Cancer, Scorpio, Pisces): Warm, comforting dishes like soups, broths, turmeric.</li>
+  </ul>
+
+  <a class="button" href="https://astro-seek.com/birth-chart-horoscope-online" target="_blank">🗺️ Create Your Free Birth Chart</a>
+  <br/>
+  <a class="button" href="#chatbot">💬 AstroKitchen Recipes</a>
+</section>
+
+<section id="moon" class="moon-widget">
+  <h2>🌙 Current Moon Phase</h2>
+  <p><img src="https://www.moongiant.com/images/moonphases.png" alt="Moon Phase Calendar" style="width:100%;max-width:400px;"></p>
+  <p><em>Tracking moon phases helps optimize timing for meals and wellness.</em></p>
+</section>
+
+<section id="chatbot">
+  <h2>💬 Chat with AstroKitchen</h2>
+  <iframe src="https://www.chatbase.co/chatbot-iframe/QjjuOdKedqSVVIHdAehUU" title="AstroKitchen Chatbot"></iframe>
+</section>
+
+</body>
+</html>
